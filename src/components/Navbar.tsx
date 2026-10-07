@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, MessageCircle, Menu, X, Globe, MapPin, Sparkles, User, QrCode, CheckCircle2, Layers, CreditCard, Calculator, Award } from 'lucide-react';
+import { Phone, MessageCircle, Menu, X, Globe, MapPin, Sparkles, User, QrCode, CheckCircle2, Layers, CreditCard, Calculator, Award, Search } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/printingData';
 
 interface NavbarProps {
@@ -18,6 +18,7 @@ interface NavbarProps {
   onOpenDimensionCalc: () => void;
   onOpenPincodeCheck: () => void;
   onOpenLoyalty: () => void;
+  onOpenSearch: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -36,6 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenDimensionCalc,
   onOpenPincodeCheck,
   onOpenLoyalty,
+  onOpenSearch,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -89,20 +91,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Zone 3: Advanced Features & Primary Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           <button
-            onClick={onOpenMockup}
-            className="hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white"
-            title="Live Design Mockup"
+            onClick={onOpenSearch}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
+            title="Global Search"
           >
-            🎨 <span>Mockup</span>
-          </button>
-
-          <button
-            onClick={onOpenAiHelper}
-            className="hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white"
-            title="AI Design Suggestion"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-            <span>AI Helper</span>
+            <Search className="w-3.5 h-3.5 text-blue-400" />
+            <span className="hidden sm:inline">{lang === 'en' ? 'Search...' : 'खोजें...'}</span>
           </button>
 
           <button
@@ -149,9 +143,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
+                onOpenSearch();
+              }}
+              className="col-span-2 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-blue-950/50 border border-blue-900/60 text-xs font-semibold text-blue-300"
+            >
+              <Search className="w-4 h-4 text-blue-400" />
+              <span>Search Services, Articles & FAQs</span>
+            </button>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
                 onOpenMockup();
               }}
-              className="flex items-center gap-2 py-2 px-3 rounded-xl bg-blue-950/50 border border-blue-900/60 text-xs font-semibold text-blue-300"
+              className="flex items-center gap-2 py-2 px-3 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300"
             >
               🎨 <span>Live Mockup</span>
             </button>
@@ -160,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenAiHelper();
               }}
-              className="flex items-center gap-2 py-2 px-3 rounded-xl bg-purple-950/50 border border-purple-900/60 text-xs font-semibold text-purple-300"
+              className="flex items-center gap-2 py-2 px-3 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300"
             >
               <Sparkles className="w-4 h-4 text-purple-400" />
               <span>AI Helper</span>
@@ -184,26 +188,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <CreditCard className="w-4 h-4 text-emerald-400" />
               <span>Visiting Card</span>
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenDimensionCalc();
-              }}
-              className="flex items-center gap-2 py-2 px-3 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300"
-            >
-              <Calculator className="w-4 h-4 text-amber-400" />
-              <span>Sq.Ft Calc</span>
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenPincodeCheck();
-              }}
-              className="flex items-center gap-2 py-2 px-3 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300"
-            >
-              <MapPin className="w-4 h-4 text-rose-400" />
-              <span>Pincode Check</span>
             </button>
           </div>
 

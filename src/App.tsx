@@ -21,6 +21,7 @@ import { PrintAssistantChat } from './components/PrintAssistantChat';
 import { PatnaMapExplorer } from './components/PatnaMapExplorer';
 import { QuoteSection } from './components/QuoteSection';
 import { PrintTipsSection } from './components/PrintTipsSection';
+import { PrintingKnowledgeHub } from './components/PrintingKnowledgeHub';
 
 // Advanced Modals
 import { LiveTrackerModal } from './components/advanced/LiveTrackerModal';
@@ -39,6 +40,7 @@ import { PrintDimensionCalculatorModal } from './components/advanced/PrintDimens
 import { PincodeCheckModal } from './components/advanced/PincodeCheckModal';
 import { CustomerLoyaltyModal } from './components/advanced/CustomerLoyaltyModal';
 import { AbstractMotionBackground } from './components/advanced/AbstractMotionBackground';
+import { GlobalSearchModal } from './components/advanced/GlobalSearchModal';
 
 function AppContent() {
   const [lang, setLang] = useState<'en' | 'hi'>('en');
@@ -65,6 +67,7 @@ function AppContent() {
   const [isDimensionCalcOpen, setIsDimensionCalcOpen] = useState(false);
   const [isPincodeCheckOpen, setIsPincodeCheckOpen] = useState(false);
   const [isLoyaltyOpen, setIsLoyaltyOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleLanguage = () => {
     setLang((prev) => (prev === 'en' ? 'hi' : 'en'));
@@ -118,6 +121,7 @@ function AppContent() {
           onOpenDimensionCalc={() => setIsDimensionCalcOpen(true)}
           onOpenPincodeCheck={() => setIsPincodeCheckOpen(true)}
           onOpenLoyalty={() => setIsLoyaltyOpen(true)}
+          onOpenSearch={() => setIsSearchOpen(true)}
         />
 
       {/* Main Content Sections */}
@@ -149,6 +153,9 @@ function AppContent() {
 
         {/* Print Preparation Tips */}
         <PrintTipsSection lang={lang} />
+
+        {/* Printing Knowledge Hub */}
+        <PrintingKnowledgeHub lang={lang} />
 
         {/* Google Maps Grounding Patna Route Explorer */}
         <PatnaMapExplorer lang={lang} />
@@ -274,6 +281,12 @@ function AppContent() {
       <CustomerLoyaltyModal
         isOpen={isLoyaltyOpen}
         onClose={() => setIsLoyaltyOpen(false)}
+        lang={lang}
+      />
+
+      <GlobalSearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
         lang={lang}
       />
       </div>
