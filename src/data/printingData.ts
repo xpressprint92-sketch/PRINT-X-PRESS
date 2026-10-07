@@ -1,5 +1,8 @@
 import { ServiceItem, PortfolioItem, TestimonialItem, FAQItem, MaterialGuideItem } from '../types';
-
+import heroFlexImage from '../assets/images/hero_flex_printing_press_1791205783493.jpg';
+import glowSignImage from '../assets/images/glow_sign_board_led_1791205796398.jpg';
+import businessCardsImage from '../assets/images/business_cards_banners_1791205834047.jpg';
+import customMerchImage from '../assets/images/custom_merchandise_print_1791205820487.jpg';
 export const BUSINESS_INFO = {
   name: 'PRINT X PRESS',
   nameHi: 'प्रिन्ट एक्स प्रेस',
